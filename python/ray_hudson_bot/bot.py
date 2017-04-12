@@ -10,7 +10,7 @@ def get_subreddit():
     return subreddit
 
 def should_post(submission, replied):
-    players = ['messi', 'di maria', 'iniesta', 'ronaldo']
+    players = ['messi', 'neymar', 'iniesta', 'di maria', 'ronaldo']
     if submission.shortlink not in replied:
         for player in players:
             if player in submission.title.lower():
