@@ -4,6 +4,11 @@ import time
 
 import praw
 
+def get_subreddit():
+    r = praw.Reddit('ray_hudson_bot', user_agent='Ray Hudson comment bot for r/soccer v0.1 by tskee2')
+    subreddit = r.subreddit('soccercirclejerk+barca+realmadrid+football+sports+spanishfootball+laliga+halamadrid')
+    return subreddit
+
 def should_post(submission, replied):
     players = ['messi', 'di maria', 'iniesta', 'ronaldo']
     if submission.shortlink not in replied:
@@ -34,12 +39,11 @@ def sleep_timer(seconds):
 def main():
     j = 0
     replied = []
-    r = praw.Reddit('ray_hudson_bot', user_agent='Ray Hudson comment bot for r/soccer v0.1 by tskee2')
-    subreddit = r.subreddit('soccer+barca+realmadrid')
+    subreddit = get_subreddit()
     while True:
         print "Waking..."
         i = 0
-        for submission in subreddit.new(limit=10):
+        for submission in subreddit.new(limit=50):
             i += 1
             print "Checking submission #%s..." % i
             post, player = should_post(submission, replied)
