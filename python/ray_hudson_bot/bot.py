@@ -4,7 +4,7 @@ import time
 
 import praw
 
-players = ['messi', 'di maria', 'iniesta']
+players = ['messi', 'di maria', 'iniesta', 'ronaldo']
 comment_template = "%s \n\n \n\n ***** \n\n*I'm a bot. If you have any feedback, please* [*message me.*](https://www.reddit.com/message/compose?to=ray_hudson_bot&subject=Feedback)"
 
 r = praw.Reddit('ray_hudson_bot', user_agent='Ray Hudson comment bot for r/soccer v0.1 by tskee2')
