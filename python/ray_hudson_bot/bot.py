@@ -4,7 +4,8 @@ import time
 
 import praw
 
-players = ['messi', 'di maria']
+players = ['messi', 'di maria', 'iniesta']
+comment_template = "%s \n\n \n\n ***** \n\n*I'm a bot. If you have any feedback, please* [*message me.*](https://www.reddit.com/message/compose?to=ray_hudson_bot&subject=Feedback)"
 
 r = praw.Reddit('ray_hudson_bot', user_agent='Ray Hudson comment bot for r/soccer v0.1 by tskee2')
 subreddit = r.subreddit('soccer+barca')
@@ -20,11 +21,12 @@ while True:
             print "Checking submission #%s..." % i
             for player in players:
                 if player in submission.title.lower():
-                    with open('../../data/%s.txt' % player, 'r') as f:
+                    #with open('../../data/%s.txt' % player, 'r') as f:
+                    with open('../../data/messi.txt', 'r') as f:
                         print "Replying to post: %s ..." % submission.shortlink
                         lines = f.readlines()
                         line = lines[random.randint(0,len(lines)-1)]
-                        submission.reply(line)
+                        submission.reply( comment_template % line )
                         replied.append(submission.shortlink)
                         break
     j += 1
