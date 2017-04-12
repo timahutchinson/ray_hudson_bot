@@ -10,11 +10,15 @@ def get_subreddit():
     return subreddit
 
 def should_post(submission, replied):
-    players = ['messi', 'neymar', 'iniesta', 'di maria', 'ronaldo']
+    players = {
+               'messi':'messi', 'neymar':'neymar', 'iniesta':'iniesta', 'di maria':'di maria', 'ronaldo':'ronaldo',
+               'cristiano':'ronaldo'
+               }
+        
     if submission.shortlink not in replied:
-        for player in players:
+        for player in players.keys():
             if player in submission.title.lower():
-                return True, player
+                return True, players[player]
         else: return False, None
     else:
         return False, None
@@ -36,7 +40,7 @@ def sleep_timer(seconds):
     print ''
 
 def main():
-    j = 0
+    j = -1
     replied = []
     subreddit = get_subreddit()
     while True:
@@ -49,7 +53,7 @@ def main():
             if post:
                 submit(submission, player, replied)
         j += 1
-        if j == 11:
+        if j == 10000:
             replied = []
             j = 0
         sleep_timer(60)
