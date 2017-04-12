@@ -15,8 +15,7 @@ def should_post(submission, replied):
         for player in players:
             if player in submission.title.lower():
                 return True, player
-            else:
-                return False, None
+        else: return False, None
     else:
         return False, None
             
