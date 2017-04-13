@@ -52,6 +52,7 @@ def main():
             post, player = should_post(submission, replied)
             if post:
                 submit(submission, player, replied)
+                submission.upvote()
         j += 1
         if j == 10000:
             replied = []
