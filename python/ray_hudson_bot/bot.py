@@ -6,7 +6,7 @@ import praw
 
 def get_subreddit():
     r = praw.Reddit('ray_hudson_bot', user_agent='Ray Hudson comment bot for r/soccer v0.1 by tskee2')
-    subreddit = r.subreddit('soccercirclejerk+barca+realmadrid+football+sports+spanishfootball+laliga+halamadrid')
+    subreddit = r.subreddit('soccercirclejerk+realmadrid+football+sports+spanishfootball+laliga+halamadrid')
     return subreddit
 
 def should_post(submission, replied):
@@ -51,8 +51,11 @@ def main():
             print "Checking submission #%s..." % i
             post, player = should_post(submission, replied)
             if post:
-                submit(submission, player, replied)
-                submission.upvote()
+                try:
+                    submit(submission, player, replied)
+                    submission.upvote()
+                except:
+                    pass
         j += 1
         if j == 10000:
             replied = []
